@@ -292,22 +292,23 @@ const lineSend = async function (req, lineUserData) {
 exports.lineUser = async (req, res) => {
   // const open = (await import("open")).default;
   console.log("req.body ", req.body);
-  let lineUserData = {};
-  var urlLiff = process.env.liffChat;
-  const _lineUserId = req.body.events[0].source.userId;
-  const _getLineDestination = req.body.destination;
-  const uri = `${urlLiff}/?botUserId=${_lineUserId}&lineDestination=${_getLineDestination}`;
-  // console.log("req.body>>>>>>>>>>>>>>> ", req.body);
-  console.log("req.source>>>>>>>>>>>>>>> ", req.body.events[0].source);
-  // const getLineDestination = req.body.destination;
-  console.log("getLineDestination>>>>>>>>>>>>>>> ", req.body.destination);
-  console.log("userId>>>>>>>>>>>>>>> ", req.body.events[0].source.userId);
-  // const dataFromDes = await getCusDataFromDestination(getLineDestination);
-  // console.log("dataFromDes >>>>>>>>>>>>>>> ", dataFromDes);
-
-  //TODO ให้เช็ค Bot Id ใน CUSTOMER ก่อน ถ้ามีกึง Init data
-  // init line user data
   try {
+    let lineUserData = {};
+    var urlLiff = process.env.liffChat;
+    const _lineUserId = req.body.events[0].source.userId;
+    const _getLineDestination = req.body.destination;
+    const uri = `${urlLiff}/?botUserId=${_lineUserId}&lineDestination=${_getLineDestination}`;
+    // console.log("req.body>>>>>>>>>>>>>>> ", req.body);
+    // console.log("req.source>>>>>>>>>>>>>>> ", req.body.events[0].source);
+    // const getLineDestination = req.body.destination;
+    // console.log("getLineDestination>>>>>>>>>>>>>>> ", req.body.destination);
+    // console.log("userId>>>>>>>>>>>>>>> ", req.body.events[0].source.userId);
+    // const dataFromDes = await getCusDataFromDestination(getLineDestination);
+    // console.log("dataFromDes >>>>>>>>>>>>>>> ", dataFromDes);
+
+    //TODO ให้เช็ค Bot Id ใน CUSTOMER ก่อน ถ้ามีกึง Init data
+    // init line user data
+    // try {
     DataGTM.findOne(
       { lineBotUid: req.body.events[0].source.userId },
       async function (err, _userId) {
